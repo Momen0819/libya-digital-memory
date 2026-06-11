@@ -54,6 +54,7 @@ export const UI: Record<string, LocalizedText> = {
   'detail.stop': { ar: 'إيقاف', en: 'Stop' },
   'detail.gallery': { ar: 'معرض الصور', en: 'Photo gallery' },
   'detail.location': { ar: 'الموقع الجغرافي', en: 'Location' },
+  'detail.mapView': { ar: 'خريطة', en: 'Map' },
   'detail.streetview': { ar: 'جولة 360°', en: '360° tour' },
   'detail.maps': { ar: 'فتح في خرائط جوجل', en: 'Open in Google Maps' },
   'detail.facts': { ar: 'بطاقة المعلم', en: 'Fact sheet' },

@@ -108,24 +108,45 @@ import { Reveal } from '../../shared/components/reveal';
           <!-- VIDEO -->
           <div>
             <h2 class="mb-4 font-display text-2xl font-bold">{{ i18n.t('detail.video') }}</h2>
-            <a [href]="youtubeUrl(m.name.en)" target="_blank" rel="noopener"
-               class="group relative flex aspect-video items-center justify-center overflow-hidden rounded-2xl">
-              <app-smart-image class="absolute inset-0 h-full w-full" [src]="m.image" [alt]="i18n.pick(m.name)" [label]="i18n.pick(m.name)" />
-              <div class="absolute inset-0 bg-ink/55 transition group-hover:bg-ink/45"></div>
-              <div class="relative flex flex-col items-center gap-3 text-sand-50">
-                <span class="flex h-16 w-16 items-center justify-center rounded-full bg-clay shadow-lift transition group-hover:scale-110">
-                  <svg class="h-7 w-7 ltr:rotate-0 rtl:rotate-180" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                </span>
-                <span class="text-sm font-bold">{{ i18n.t('detail.watch') }}</span>
+            @if (m.videoId) {
+              <div class="overflow-hidden rounded-2xl shadow-card ring-1 ring-ink/10">
+                <iframe class="aspect-video w-full border-0" [src]="youtubeEmbed(m.videoId)"
+                  [title]="i18n.pick(m.name)" loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
               </div>
-            </a>
+            } @else {
+              <a [href]="youtubeUrl(m.name.en)" target="_blank" rel="noopener"
+                 class="group relative flex aspect-video items-center justify-center overflow-hidden rounded-2xl">
+                <app-smart-image class="absolute inset-0 h-full w-full" [src]="m.image" [alt]="i18n.pick(m.name)" [label]="i18n.pick(m.name)" />
+                <div class="absolute inset-0 bg-ink/55 transition group-hover:bg-ink/45"></div>
+                <div class="relative flex flex-col items-center gap-3 text-sand-50">
+                  <span class="flex h-16 w-16 items-center justify-center rounded-full bg-clay shadow-lift transition group-hover:scale-110">
+                    <svg class="h-7 w-7 ltr:rotate-0 rtl:rotate-180" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                  </span>
+                  <span class="text-sm font-bold">{{ i18n.t('detail.watch') }}</span>
+                </div>
+              </a>
+            }
           </div>
 
-          <!-- LOCATION -->
+          <!-- LOCATION + 360° -->
           <div>
-            <h2 class="mb-4 font-display text-2xl font-bold">{{ i18n.t('detail.location') }}</h2>
+            <div class="mb-4 flex items-center justify-between gap-4">
+              <h2 class="font-display text-2xl font-bold">{{ i18n.t('detail.location') }}</h2>
+              <div class="inline-flex rounded-full bg-ink/[0.06] p-1 text-xs font-bold">
+                <button (click)="locView.set('map')" class="rounded-full px-3.5 py-1.5 transition-colors"
+                  [class]="locView() === 'map' ? 'bg-clay text-sand-50' : 'text-ink-soft hover:text-ink'">{{ i18n.t('detail.mapView') }}</button>
+                <button (click)="locView.set('pano')" class="rounded-full px-3.5 py-1.5 transition-colors"
+                  [class]="locView() === 'pano' ? 'bg-clay text-sand-50' : 'text-ink-soft hover:text-ink'">{{ i18n.t('detail.streetview') }}</button>
+              </div>
+            </div>
             <div class="overflow-hidden rounded-2xl shadow-card ring-1 ring-ink/10">
-              <iframe [src]="mapEmbed(m.coords.lat, m.coords.lng)" class="h-72 w-full border-0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              @if (locView() === 'map') {
+                <iframe [src]="mapEmbed(m.coords.lat, m.coords.lng)" class="h-72 w-full border-0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              } @else {
+                <iframe [src]="panoEmbed(m.coords.lat, m.coords.lng)" class="h-72 w-full border-0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              }
             </div>
             <div class="mt-3 flex flex-wrap gap-3">
               <a [href]="mapsLink(m.coords.lat, m.coords.lng)" target="_blank" rel="noopener" class="btn-ghost px-4 py-2">
@@ -241,6 +262,7 @@ export class MonumentDetail {
   readonly activeImage = signal('');
   readonly qr = signal<string | null>(null);
   readonly shared = signal(false);
+  readonly locView = signal<'map' | 'pano'>('map');
 
   // Chronological backbone of Libyan heritage; the monument's own era is highlighted.
   private readonly eraOrder: Era[] = [
@@ -283,6 +305,16 @@ export class MonumentDetail {
 
   mapEmbed(lat: number, lng: number): SafeResourceUrl {
     const url = `https://maps.google.com/maps?q=${lat},${lng}&z=13&output=embed`;
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+
+  youtubeEmbed(id: string): SafeResourceUrl {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube-nocookie.com/embed/${id}`);
+  }
+
+  // Keyless embedded Street View; shows Google's own panel where no imagery exists.
+  panoEmbed(lat: number, lng: number): SafeResourceUrl {
+    const url = `https://www.google.com/maps?q=&layer=c&cbll=${lat},${lng}&cbp=12,0,0,0,0&output=svembed`;
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 

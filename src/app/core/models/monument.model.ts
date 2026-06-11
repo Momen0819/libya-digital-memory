@@ -53,6 +53,8 @@ export interface Monument {
   image: string;
   gallery: string[];
   imageCredit: string;
+  /** Optional real YouTube video id for an embedded documentary. */
+  videoId?: string;
   sources: SourceLink[];
   featured: boolean;
   accent: Accent;

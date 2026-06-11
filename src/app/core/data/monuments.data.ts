@@ -14,6 +14,7 @@ export const MONUMENTS: Monument[] = [
   {
     id: 'leptis-magna',
     slug: 'leptis-magna',
+    videoId: 'uHxPAye2m5k',
     name: { ar: 'لِبدة الكبرى', en: 'Leptis Magna' },
     region: 'west',
     city: { ar: 'الخُمس', en: 'Al Khums' },
@@ -48,6 +49,7 @@ export const MONUMENTS: Monument[] = [
   {
     id: 'sabratha',
     slug: 'sabratha',
+    videoId: 'wdrDliJZDhE',
     name: { ar: 'صبراتة', en: 'Sabratha' },
     region: 'west',
     city: { ar: 'صبراتة', en: 'Sabratha' },
@@ -82,6 +84,7 @@ export const MONUMENTS: Monument[] = [
   {
     id: 'cyrene',
     slug: 'cyrene',
+    videoId: 'pG7AmxcYJKo',
     name: { ar: 'قورينا (شحات)', en: 'Cyrene' },
     region: 'east',
     city: { ar: 'شحات', en: 'Shahhat' },
@@ -116,6 +119,7 @@ export const MONUMENTS: Monument[] = [
   {
     id: 'ghadames',
     slug: 'ghadames',
+    videoId: 'CXAyfvFlgfU',
     name: { ar: 'غدامس', en: 'Ghadames' },
     region: 'south',
     city: { ar: 'غدامس', en: 'Ghadames' },
@@ -150,6 +154,7 @@ export const MONUMENTS: Monument[] = [
   {
     id: 'tadrart-acacus',
     slug: 'tadrart-acacus',
+    videoId: 'nzrqwWpw1UY',
     name: { ar: 'تدرارت أكاكوس', en: 'Tadrart Acacus' },
     region: 'south',
     city: { ar: 'غات', en: 'Ghat' },
@@ -184,6 +189,7 @@ export const MONUMENTS: Monument[] = [
   {
     id: 'marcus-aurelius-arch',
     slug: 'marcus-aurelius-arch',
+    videoId: '4wmKigAczHo',
     name: { ar: 'قوس ماركوس أوريليوس', en: 'Arch of Marcus Aurelius' },
     region: 'west',
     city: { ar: 'طرابلس', en: 'Tripoli' },
@@ -217,6 +223,7 @@ export const MONUMENTS: Monument[] = [
   {
     id: 'red-castle',
     slug: 'red-castle',
+    videoId: '2Gz8xsqj7IM',
     name: { ar: 'السرايا الحمراء', en: 'Red Castle (Assaraya Alhamra)' },
     region: 'west',
     city: { ar: 'طرابلس', en: 'Tripoli' },
@@ -248,6 +255,7 @@ export const MONUMENTS: Monument[] = [
   {
     id: 'apollonia',
     slug: 'apollonia',
+    videoId: 'b7sJ61QhP98',
     name: { ar: 'أبولونيا (سوسة)', en: 'Apollonia' },
     region: 'east',
     city: { ar: 'سوسة', en: 'Susa' },
@@ -279,6 +287,7 @@ export const MONUMENTS: Monument[] = [
   {
     id: 'ptolemais',
     slug: 'ptolemais',
+    videoId: 'jy0fEjyQ0rY',
     name: { ar: 'بطوليمايس (طلميثة)', en: 'Ptolemais' },
     region: 'east',
     city: { ar: 'طلميثة', en: 'Tolmeita' },
