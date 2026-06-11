@@ -24,6 +24,25 @@
     background: rgba(168, 71, 42, 0.18);
   }
 
+  /* Keyboard focus: a single branded ring, visible on both parchment and dark hero. */
+  :focus-visible {
+    outline: 2px solid #a8472a;
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+
+  /* Respect reduced-motion: honour the OS setting (accessibility). */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
   ::-webkit-scrollbar { width: 11px; height: 11px; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb {
@@ -50,6 +69,10 @@
   }
   .btn-ghost {
     @apply btn border border-ink/15 text-ink hover:border-ink/35 hover:bg-ink/[0.03];
+  }
+  /* Tactile press feedback (skill: scale-feedback). */
+  .btn:active {
+    transform: translateY(0) scale(0.97);
   }
 
   .chip {
@@ -94,6 +117,8 @@
 @layer utilities {
   .text-balance { text-wrap: balance; }
   .ltr { direction: ltr; }
+  /* Tabular figures keep stats, coordinates and counters from shifting width. */
+  .tnum { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum' 1; }
   .glass {
     backdrop-filter: saturate(1.4) blur(10px);
     background: rgba(250, 245, 236, 0.72);

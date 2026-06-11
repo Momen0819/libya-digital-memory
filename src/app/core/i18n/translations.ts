@@ -64,6 +64,7 @@ export const UI: Record<string, LocalizedText> = {
   'detail.watch': { ar: 'شاهد على يوتيوب', en: 'Watch on YouTube' },
   'detail.related': { ar: 'معالم ذات صلة', en: 'Related monuments' },
   'detail.unesco': { ar: 'تراث عالمي', en: 'World Heritage' },
+  'detail.timeline': { ar: 'الحقبة الزمنية', en: 'Era on the timeline' },
 
   'map.title': { ar: 'خريطة ليبيا التفاعلية', en: 'Interactive map of Libya' },
   'map.sub': { ar: 'عرض جغرافي لجميع المعالم الموثّقة — انقر على أي علامة للتفاصيل.', en: 'A geographic view of all documented monuments — click a marker for details.' },

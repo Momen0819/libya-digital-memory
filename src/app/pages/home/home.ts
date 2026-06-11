@@ -48,7 +48,7 @@ import { Region } from '../../core/models/monument.model';
         <div class="container grid grid-cols-2 divide-x divide-sand-50/10 rtl:divide-x-reverse md:grid-cols-4">
           @for (s of statItems(); track s.key) {
             <div class="px-4 py-6 text-center">
-              <div class="font-kufi text-3xl font-bold text-gold-light">{{ s.value }}</div>
+              <div class="tnum font-kufi text-3xl font-bold text-gold-light">{{ s.value }}</div>
               <div class="mt-1 text-xs font-medium text-sand-50/70">{{ i18n.t(s.key) }}</div>
             </div>
           }

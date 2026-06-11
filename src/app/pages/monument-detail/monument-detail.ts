@@ -9,6 +9,7 @@ import {
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { Era } from '../../core/models/monument.model';
 import { HeritageService } from '../../core/services/heritage.service';
 import { I18nService } from '../../core/services/i18n.service';
 import { QrService } from '../../core/services/qr.service';
@@ -48,6 +49,24 @@ import { SmartImage } from '../../shared/components/smart-image';
         </div>
       </section>
 
+      <!-- ERA TIMELINE — situates the monument within Libya's layered history -->
+      <section class="border-b border-ink/10 bg-sand-50/55">
+        <div class="container flex items-center gap-2 overflow-x-auto py-4 text-xs">
+          <span class="shrink-0 font-bold uppercase tracking-[0.14em] text-clay">{{ i18n.t('detail.timeline') }}</span>
+          <span class="mx-1 h-4 w-px shrink-0 bg-ink/15"></span>
+          @for (e of eraTimeline(); track e.key; let last = $last) {
+            <span
+              class="shrink-0 rounded-full px-3 py-1 font-bold transition-colors"
+              [class]="e.active ? 'bg-clay text-sand-50 shadow-card' : 'text-ink-faint'">
+              {{ i18n.era(e.key) }}
+            </span>
+            @if (!last) {
+              <span class="h-px w-4 shrink-0 bg-ink/20"></span>
+            }
+          }
+        </div>
+      </section>
+
       <section class="container grid gap-10 py-12 lg:grid-cols-[1.7fr_1fr]">
         <!-- MAIN -->
         <div class="space-y-12">
@@ -67,7 +86,7 @@ import { SmartImage } from '../../shared/components/smart-image';
                 </button>
               }
             </div>
-            <p class="text-lg leading-loose text-ink-soft">{{ i18n.pick(m.history) }}</p>
+            <p class="max-w-[70ch] text-lg leading-loose text-ink-soft">{{ i18n.pick(m.history) }}</p>
           </div>
 
           <!-- GALLERY -->
@@ -76,10 +95,10 @@ import { SmartImage } from '../../shared/components/smart-image';
             <div class="grid grid-cols-3 gap-3 sm:grid-cols-4">
               @for (g of m.gallery; track $index) {
                 <button (click)="activeImage.set(g)"
-                  class="relative aspect-square overflow-hidden rounded-lg ring-2 transition"
+                  class="group relative aspect-square overflow-hidden rounded-lg ring-2 transition hover:ring-clay/50"
                   [class.ring-clay]="activeImage() === g"
                   [class.ring-transparent]="activeImage() !== g">
-                  <app-smart-image class="h-full w-full" [src]="g" [alt]="i18n.pick(m.name)" [label]="i18n.pick(m.name)" />
+                  <app-smart-image class="h-full w-full transition-transform duration-500 group-hover:scale-110" [src]="g" [alt]="i18n.pick(m.name)" [label]="i18n.pick(m.name)" />
                 </button>
               }
             </div>
@@ -156,7 +175,7 @@ import { SmartImage } from '../../shared/components/smart-image';
               }
               <div class="flex items-center justify-between py-2.5 text-sm">
                 <dt class="text-ink-faint">{{ i18n.t('detail.location') }}</dt>
-                <dd class="ltr font-bold">{{ m.coords.lat.toFixed(3) }}, {{ m.coords.lng.toFixed(3) }}</dd>
+                <dd class="ltr tnum font-bold">{{ m.coords.lat.toFixed(3) }}, {{ m.coords.lng.toFixed(3) }}</dd>
               </div>
             </dl>
           </div>
@@ -221,6 +240,22 @@ export class MonumentDetail {
   readonly activeImage = signal('');
   readonly qr = signal<string | null>(null);
   readonly shared = signal(false);
+
+  // Chronological backbone of Libyan heritage; the monument's own era is highlighted.
+  private readonly eraOrder: Era[] = [
+    'prehistoric',
+    'phoenician',
+    'greek',
+    'roman',
+    'byzantine',
+    'islamic',
+    'ottoman',
+  ];
+
+  eraTimeline(): { key: Era; active: boolean }[] {
+    const era = this.monument()?.era;
+    return this.eraOrder.map((key) => ({ key, active: key === era }));
+  }
 
   constructor() {
     // عند تغيّر المعلم: ضبط الصورة النشطة، توليد QR، وإيقاف أي سرد سابق
