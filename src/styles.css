@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-parchment text-ink font-body antialiased;
+    background-image:
+      radial-gradient(circle at 12% -10%, rgba(194, 161, 77, 0.10), transparent 38%),
+      radial-gradient(circle at 100% 0%, rgba(20, 86, 78, 0.06), transparent 30%);
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-kufi text-ink;
+    letter-spacing: -0.01em;
+  }
+
+  ::selection {
+    background: rgba(168, 71, 42, 0.18);
+  }
+
+  ::-webkit-scrollbar { width: 11px; height: 11px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(34, 28, 20, 0.18);
+    border-radius: 999px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(34, 28, 20, 0.32); background-clip: content-box; }
+}
+
+@layer components {
+  .container-tight { @apply container max-w-[1100px]; }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold
+           transition-all duration-200 select-none cursor-pointer;
+  }
+  .btn-primary {
+    @apply btn bg-clay text-sand-50 shadow-card hover:bg-clay-dark hover:-translate-y-0.5;
+  }
+  .btn-teal {
+    @apply btn bg-teal text-sand-50 hover:bg-teal-dark hover:-translate-y-0.5;
+  }
+  .btn-ghost {
+    @apply btn border border-ink/15 text-ink hover:border-ink/35 hover:bg-ink/[0.03];
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-clay;
+  }
+
+  .card {
+    @apply rounded-2xl bg-sand-50 shadow-card ring-1 ring-ink/[0.06];
+  }
+
+  .rule-gold {
+    @apply relative flex items-center justify-center;
+  }
+  .rule-gold::before, .rule-gold::after {
+    content: '';
+    @apply h-px flex-1 bg-gradient-to-l from-transparent via-gold/50 to-transparent;
+  }
+  .rule-gold .diamond {
+    @apply mx-3 h-2 w-2 rotate-45 bg-gold;
+  }
+
+  .plate {
+    @apply relative flex items-center justify-center overflow-hidden;
+    background:
+      radial-gradient(120% 120% at 0% 0%, #1d6258 0%, #14564E 45%, #0E423B 100%);
+  }
+  .plate::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%23C2A14D' stroke-opacity='0.18' stroke-width='1.2'%3E%3Cpath d='M40 4l36 36-36 36L4 40z'/%3E%3Ccircle cx='40' cy='40' r='16'/%3E%3Cpath d='M40 24v32M24 40h32'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 80px 80px;
+    opacity: 0.85;
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .ltr { direction: ltr; }
+  .glass {
+    backdrop-filter: saturate(1.4) blur(10px);
+    background: rgba(250, 245, 236, 0.72);
+  }
+}
