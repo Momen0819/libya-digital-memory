@@ -4,13 +4,14 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { HeritageService } from '../../core/services/heritage.service';
 import { I18nService } from '../../core/services/i18n.service';
 import { MonumentCard } from '../../shared/components/monument-card';
+import { Reveal } from '../../shared/components/reveal';
 import { Era, Region } from '../../core/models/monument.model';
 
 @Component({
   selector: 'app-monuments',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [MonumentCard],
+  imports: [MonumentCard, Reveal],
   template: `
     <section class="border-b border-ink/10 bg-sand-50/60">
       <div class="container py-12">
@@ -53,7 +54,7 @@ import { Era, Region } from '../../core/models/monument.model';
       @if (results().length) {
         <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           @for (m of results(); track m.id) {
-            <app-monument-card [m]="m" />
+            <app-monument-card [m]="m" [appReveal]="$index * 55" />
           }
         </div>
       } @else {

@@ -4,13 +4,14 @@ import { HeritageService } from '../../core/services/heritage.service';
 import { I18nService } from '../../core/services/i18n.service';
 import { MonumentCard } from '../../shared/components/monument-card';
 import { SmartImage } from '../../shared/components/smart-image';
+import { Reveal } from '../../shared/components/reveal';
 import { Region } from '../../core/models/monument.model';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink, MonumentCard, SmartImage],
+  imports: [RouterLink, MonumentCard, SmartImage, Reveal],
   template: `
     <!-- HERO -->
     <section class="relative overflow-hidden">
@@ -65,7 +66,7 @@ import { Region } from '../../core/models/monument.model';
       </div>
       <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         @for (m of featured(); track m.id) {
-          <app-monument-card [m]="m" />
+          <app-monument-card [m]="m" [appReveal]="$index * 70" />
         }
       </div>
       <div class="mt-10 text-center">
@@ -81,7 +82,7 @@ import { Region } from '../../core/models/monument.model';
         </div>
         <div class="grid gap-8 md:grid-cols-3">
           @for (step of steps(); track step.n) {
-            <div class="relative text-center">
+            <div class="relative text-center" [appReveal]="$index * 90">
               <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-teal text-sand-50 shadow-card">
                 @switch (step.n) {
                   @case (1) {
@@ -111,7 +112,7 @@ import { Region } from '../../core/models/monument.model';
       </div>
       <div class="grid gap-6 md:grid-cols-3">
         @for (r of regions(); track r.region) {
-          <a [routerLink]="['/monuments']" [queryParams]="{ region: r.region }"
+          <a [routerLink]="['/monuments']" [queryParams]="{ region: r.region }" [appReveal]="$index * 80"
              class="group card relative overflow-hidden p-7 transition-all hover:-translate-y-1 hover:shadow-lift">
             <div class="absolute inset-y-0 -left-6 w-24 bg-arabesque opacity-60"></div>
             <div class="relative">

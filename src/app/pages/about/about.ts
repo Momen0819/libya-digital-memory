@@ -1,10 +1,12 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { I18nService } from '../../core/services/i18n.service';
+import { Reveal } from '../../shared/components/reveal';
 
 @Component({
   selector: 'app-about',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [Reveal],
   template: `
     <section class="relative overflow-hidden border-b border-ink/10 bg-teal text-sand-50">
       <div class="absolute inset-0 bg-arabesque opacity-30"></div>
@@ -21,7 +23,7 @@ import { I18nService } from '../../core/services/i18n.service';
 
         <div class="mt-10 grid gap-4 sm:grid-cols-3">
           @for (s of steps(); track s.t) {
-            <div class="card p-5">
+            <div class="card p-5" [appReveal]="$index * 80">
               <div class="font-kufi text-3xl font-bold text-gold">0{{ s.n }}</div>
               <h3 class="mt-2 font-kufi text-base font-bold">{{ i18n.t(s.t) }}</h3>
               <p class="mt-1 text-sm leading-relaxed text-ink-soft">{{ i18n.t(s.d) }}</p>

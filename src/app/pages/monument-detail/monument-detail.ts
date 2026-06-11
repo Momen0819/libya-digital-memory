@@ -16,12 +16,13 @@ import { QrService } from '../../core/services/qr.service';
 import { SpeechService } from '../../core/services/speech.service';
 import { MonumentCard } from '../../shared/components/monument-card';
 import { SmartImage } from '../../shared/components/smart-image';
+import { Reveal } from '../../shared/components/reveal';
 
 @Component({
   selector: 'app-monument-detail',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink, MonumentCard, SmartImage],
+  imports: [RouterLink, MonumentCard, SmartImage, Reveal],
   template: `
     @if (monument(); as m) {
       <!-- HERO -->
@@ -203,7 +204,7 @@ import { SmartImage } from '../../shared/components/smart-image';
         <h2 class="mb-6 font-display text-2xl font-bold">{{ i18n.t('detail.related') }}</h2>
         <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           @for (r of related(); track r.id) {
-            <app-monument-card [m]="r" />
+            <app-monument-card [m]="r" [appReveal]="$index * 70" />
           }
         </div>
       </section>

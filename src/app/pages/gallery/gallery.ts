@@ -3,12 +3,13 @@ import { RouterLink } from '@angular/router';
 import { HeritageService } from '../../core/services/heritage.service';
 import { I18nService } from '../../core/services/i18n.service';
 import { SmartImage } from '../../shared/components/smart-image';
+import { Reveal } from '../../shared/components/reveal';
 
 @Component({
   selector: 'app-gallery',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink, SmartImage],
+  imports: [RouterLink, SmartImage, Reveal],
   template: `
     <section class="border-b border-ink/10 bg-sand-50/60">
       <div class="container py-12">
@@ -21,7 +22,7 @@ import { SmartImage } from '../../shared/components/smart-image';
     <section class="container py-10">
       <div class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
         @for (m of items(); track m.key) {
-          <a [routerLink]="['/m', m.slug]"
+          <a [routerLink]="['/m', m.slug]" [appReveal]="$index * 45"
              class="group relative block overflow-hidden rounded-xl shadow-card"
              [class.row-span-2]="m.tall"
              [style.aspect-ratio]="m.tall ? '3 / 4' : '4 / 3'">
