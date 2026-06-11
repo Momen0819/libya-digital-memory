@@ -1,19 +1,34 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-/** شعار المشروع — قوس روماني مُجرّد داخل خاتم مع رمز QR رمزي */
+/**
+ * شعار «ذاكرة ليبيا الرقمية» — قوس نصرٍ ليبيّ مُجرّد (مستوحى من قوس ماركوس أوريليوس
+ * ولِبدة الكبرى): عمودان وقوسٌ بحجر مفتاح ذهبي، على تدرّج أزرق متوسطي بإطار ذهبي.
+ */
 @Component({
   selector: 'app-brand-mark',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <svg viewBox="0 0 48 48" fill="none" class="h-full w-full" aria-hidden="true">
-      <rect x="1.5" y="1.5" width="45" height="45" rx="12" fill="#14564E" />
-      <rect x="1.5" y="1.5" width="45" height="45" rx="12" stroke="#C2A14D" stroke-opacity="0.5" stroke-width="1.5" />
-      <path d="M14 34V21a10 10 0 0 1 20 0v13" stroke="#FAF5EC" stroke-width="2.4" stroke-linecap="round" />
-      <path d="M14 34h20" stroke="#FAF5EC" stroke-width="2.4" stroke-linecap="round" />
-      <path d="M24 34V24" stroke="#C2A14D" stroke-width="2.2" stroke-linecap="round" />
-      <rect x="19" y="9" width="3" height="3" rx="0.6" fill="#C2A14D" />
-      <rect x="26" y="9" width="3" height="3" rx="0.6" fill="#C2A14D" />
+      <defs>
+        <linearGradient id="lhBg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#1A6A60" />
+          <stop offset="1" stop-color="#0E423B" />
+        </linearGradient>
+      </defs>
+      <rect x="1.5" y="1.5" width="45" height="45" rx="13" fill="url(#lhBg)" />
+      <rect x="1.5" y="1.5" width="45" height="45" rx="13" stroke="#C2A14D" stroke-opacity="0.55" stroke-width="1.5" />
+
+      <!-- keystone diamond -->
+      <path d="M24 11.6l1.9 1.9-1.9 1.9-1.9-1.9z" fill="#C2A14D" />
+      <!-- outer arch + columns -->
+      <path d="M15 35.5V22.5a9 9 0 0 1 18 0v13" stroke="#FAF5EC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+      <!-- inner opening (gold) -->
+      <path d="M20 35.5v-7.4a4 4 0 0 1 8 0v7.4" stroke="#C2A14D" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+      <!-- plinth -->
+      <path d="M12 35.5h24" stroke="#FAF5EC" stroke-width="2.6" stroke-linecap="round" />
+      <!-- column capitals -->
+      <path d="M14 22.7h2M32 22.7h2" stroke="#C2A14D" stroke-width="1.4" stroke-linecap="round" />
     </svg>
   `,
   host: { class: 'inline-block' },

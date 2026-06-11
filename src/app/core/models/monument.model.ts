@@ -9,7 +9,8 @@ export type Era =
   | 'roman'
   | 'byzantine'
   | 'islamic'
-  | 'ottoman';
+  | 'ottoman'
+  | 'modern';
 
 export type MonumentType =
   | 'archaeological-city'

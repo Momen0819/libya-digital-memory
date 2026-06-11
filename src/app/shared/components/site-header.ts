@@ -74,6 +74,7 @@ export class SiteHeader {
   readonly links = [
     { path: '/', key: 'nav.home' },
     { path: '/monuments', key: 'nav.monuments' },
+    { path: '/figures', key: 'nav.figures' },
     { path: '/map', key: 'nav.map' },
     { path: '/gallery', key: 'nav.gallery' },
     { path: '/about', key: 'nav.about' },

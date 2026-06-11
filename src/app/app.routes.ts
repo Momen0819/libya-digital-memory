@@ -22,8 +22,16 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/about/about').then((m) => m.About),
   },
   {
+    path: 'figures',
+    loadComponent: () => import('./pages/figures/figures').then((m) => m.Figures),
+  },
+  {
     path: 'm/:slug',
     loadComponent: () => import('./pages/monument-detail/monument-detail').then((m) => m.MonumentDetail),
+  },
+  {
+    path: 'p/:slug',
+    loadComponent: () => import('./pages/figure-detail/figure-detail').then((m) => m.FigureDetail),
   },
   { path: '**', redirectTo: '' },
 ];

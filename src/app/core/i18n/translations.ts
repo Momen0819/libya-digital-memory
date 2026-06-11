@@ -6,6 +6,7 @@ export const UI: Record<string, LocalizedText> = {
 
   'nav.home': { ar: 'الرئيسية', en: 'Home' },
   'nav.monuments': { ar: 'فهرس المعالم', en: 'Monuments' },
+  'nav.figures': { ar: 'شخصيات', en: 'Figures' },
   'nav.map': { ar: 'الخريطة', en: 'Map' },
   'nav.gallery': { ar: 'المعرض', en: 'Gallery' },
   'nav.about': { ar: 'عن المشروع', en: 'About' },
@@ -66,6 +67,14 @@ export const UI: Record<string, LocalizedText> = {
   'detail.related': { ar: 'معالم ذات صلة', en: 'Related monuments' },
   'detail.unesco': { ar: 'تراث عالمي', en: 'World Heritage' },
   'detail.timeline': { ar: 'الحقبة الزمنية', en: 'Era on the timeline' },
+  'figures.eyebrow': { ar: 'شخصيات تاريخية', en: 'Historical figures' },
+  'figures.title': { ar: 'شخصيات صنعت التاريخ', en: 'Figures who shaped history' },
+  'figures.sub': { ar: 'وجوهٌ ليبية خالدة من عصر الإمبراطورية إلى فجر الاستقلال.', en: 'Immortal Libyan figures from the age of empire to the dawn of independence.' },
+  'figure.bio': { ar: 'سيرة', en: 'Biography' },
+  'figure.role': { ar: 'الدور', en: 'Role' },
+  'figure.lifespan': { ar: 'الحقبة', en: 'Lifespan' },
+  'figure.origin': { ar: 'المنشأ', en: 'Origin' },
+  'figure.related': { ar: 'شخصيات أخرى', en: 'Other figures' },
 
   'map.title': { ar: 'خريطة ليبيا التفاعلية', en: 'Interactive map of Libya' },
   'map.sub': { ar: 'عرض جغرافي لجميع المعالم الموثّقة — انقر على أي علامة للتفاصيل.', en: 'A geographic view of all documented monuments — click a marker for details.' },
@@ -107,6 +116,7 @@ export const ERA_LABEL: Record<Era, LocalizedText> = {
   byzantine: { ar: 'بيزنطي', en: 'Byzantine' },
   islamic: { ar: 'إسلامي', en: 'Islamic' },
   ottoman: { ar: 'عثماني', en: 'Ottoman' },
+  modern: { ar: 'حديث', en: 'Modern' },
 };
 
 export const TYPE_LABEL: Record<MonumentType, LocalizedText> = {
