@@ -2,11 +2,12 @@ import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SiteHeader } from './shared/components/site-header';
 import { SiteFooter } from './shared/components/site-footer';
+import { ChatWidget } from './shared/components/chat-widget';
 import { I18nService } from './core/services/i18n.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, SiteHeader, SiteFooter],
+  imports: [RouterOutlet, SiteHeader, SiteFooter, ChatWidget],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })

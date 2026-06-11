@@ -76,6 +76,14 @@ export const UI: Record<string, LocalizedText> = {
   'figure.origin': { ar: 'المنشأ', en: 'Origin' },
   'figure.related': { ar: 'شخصيات أخرى', en: 'Other figures' },
 
+  'chat.title': { ar: 'مرشد التراث', en: 'Heritage Guide' },
+  'chat.subtitle': { ar: 'اسألني عن معالم ليبيا وشخصياتها', en: 'Ask about Libya’s monuments & figures' },
+  'chat.placeholder': { ar: 'اكتب سؤالك…', en: 'Type your question…' },
+  'chat.open': { ar: 'افتح مرشد التراث', en: 'Open the heritage guide' },
+  'chat.close': { ar: 'إغلاق', en: 'Close' },
+  'chat.send': { ar: 'إرسال', en: 'Send' },
+  'chat.demo': { ar: 'تجريبي', en: 'Demo' },
+
   'map.title': { ar: 'خريطة ليبيا التفاعلية', en: 'Interactive map of Libya' },
   'map.sub': { ar: 'عرض جغرافي لجميع المعالم الموثّقة — انقر على أي علامة للتفاصيل.', en: 'A geographic view of all documented monuments — click a marker for details.' },
 
