@@ -93,8 +93,9 @@ export class Monuments {
   );
 
   pill(active: boolean): string {
+    const base = 'inline-flex min-h-[40px] items-center rounded-full px-4 py-2 text-sm font-bold transition-colors';
     return active
-      ? 'rounded-full bg-clay px-3.5 py-1.5 text-xs font-bold text-sand-50'
-      : 'rounded-full border border-ink/12 px-3.5 py-1.5 text-xs font-bold text-ink-soft transition-colors hover:border-ink/30';
+      ? `${base} bg-clay text-sand-50 shadow-card`
+      : `${base} border border-ink/12 text-ink-soft hover:border-ink/30 hover:text-ink`;
   }
 }

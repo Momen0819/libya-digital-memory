@@ -38,9 +38,11 @@ module.exports = {
         },
       },
       fontFamily: {
-        display: ['Amiri', 'Reem Kufi', 'Georgia', 'serif'],
+        // Latin font first so English glyphs use the elegant serif, while Arabic
+        // (absent from Cinzel/Cormorant) falls through per-glyph to Amiri/Reem Kufi.
+        display: ['Cinzel', 'Amiri', '"Reem Kufi"', 'Georgia', 'serif'],
         body: ['Tajawal', 'system-ui', 'sans-serif'],
-        kufi: ['"Reem Kufi"', 'Tajawal', 'sans-serif'],
+        kufi: ['"Cormorant Garamond"', '"Reem Kufi"', 'Tajawal', 'sans-serif'],
       },
       boxShadow: {
         card: '0 1px 2px rgba(34,28,20,0.04), 0 8px 24px -12px rgba(34,28,20,0.18)',
