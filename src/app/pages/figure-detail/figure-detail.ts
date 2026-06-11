@@ -38,7 +38,7 @@ import { Reveal } from '../../shared/components/reveal';
         </div>
       </section>
 
-      <section class="container grid gap-10 py-12 lg:grid-cols-[1.7fr_1fr]">
+      <section class="container grid gap-8 py-12 md:grid-cols-[1.6fr_1fr] md:gap-10">
         <!-- BIO -->
         <div>
           <div class="mb-4 flex items-center justify-between gap-4">
