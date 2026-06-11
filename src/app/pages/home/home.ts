@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { HeritageService } from '../../core/services/heritage.service';
+import { FiguresService } from '../../core/services/figures.service';
 import { I18nService } from '../../core/services/i18n.service';
 import { MonumentCard } from '../../shared/components/monument-card';
 import { SmartImage } from '../../shared/components/smart-image';
@@ -74,6 +75,35 @@ import { Region } from '../../core/models/monument.model';
       </div>
     </section>
 
+    <!-- FIGURES TEASER -->
+    <section class="border-y border-ink/10 bg-sand-50/60">
+      <div class="container py-20">
+        <div class="mb-10 flex items-end justify-between gap-4">
+          <div>
+            <span class="eyebrow">{{ i18n.t('figures.eyebrow') }}</span>
+            <h2 class="mt-2 font-display text-3xl font-bold md:text-4xl">{{ i18n.t('figures.title') }}</h2>
+          </div>
+          <a routerLink="/figures" class="btn-ghost hidden px-5 py-2.5 sm:inline-flex">{{ i18n.t('cta.viewAll') }}</a>
+        </div>
+        <div class="grid gap-6 sm:grid-cols-3">
+          @for (f of featuredFigures(); track f.id) {
+            <a [routerLink]="['/p', f.slug]" [appReveal]="$index * 80"
+               class="group card flex overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-lift">
+              <div class="relative w-28 shrink-0 overflow-hidden bg-sand-100">
+                <app-smart-image class="h-full w-full transition-transform duration-700 group-hover:scale-105"
+                  [src]="f.image" [alt]="i18n.pick(f.name)" [label]="i18n.pick(f.name)" />
+              </div>
+              <div class="flex flex-1 flex-col justify-center p-5">
+                <span class="chip self-start bg-clay/10 text-clay">{{ i18n.era(f.era) }}</span>
+                <h3 class="mt-2 font-kufi text-lg font-bold leading-tight">{{ i18n.pick(f.name) }}</h3>
+                <p class="mt-1 text-xs font-bold text-ink-faint">{{ i18n.pick(f.role) }}</p>
+              </div>
+            </a>
+          }
+        </div>
+      </div>
+    </section>
+
     <!-- HOW IT WORKS -->
     <section class="border-y border-ink/10 bg-sand-50/60">
       <div class="container py-20">
@@ -143,9 +173,11 @@ import { Region } from '../../core/models/monument.model';
 })
 export class Home {
   readonly heritage = inject(HeritageService);
+  readonly peopleSvc = inject(FiguresService);
   readonly i18n = inject(I18nService);
 
   readonly featured = computed(() => this.heritage.featured());
+  readonly featuredFigures = computed(() => this.peopleSvc.featured());
   readonly hero = computed(() => this.heritage.featured()[0] ?? this.heritage.all()[0]);
 
   statItems() {
